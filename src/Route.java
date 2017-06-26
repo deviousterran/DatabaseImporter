@@ -273,8 +273,8 @@ public class Route {
 			
 			 //System.out.println("Data:" + s.get(i));
 			 //System.out.println("teh switch value is:" + switchValue);
-			//in this case, teh first element is a null value so i'm skipping it.  Really the switch statement is zero based.
-			//the case statements should ultimately match (columnNumber-1) for each element.
+			// Really the switch statement is zero based. 
+			//the case statements should ultimately match (columnNumber) for each element.  Remember! Zero-based!
 			//Or... you could be smart and actually number the columns to make mapping easy. 
 			 switch(switchValue){
 			 case 0:
@@ -292,13 +292,13 @@ public class Route {
 			 case 40:
 				 setmStopNumber(ParseData.parseInteger(s.get(i)));
 				 break;
-			 case 3:
+			 case 2:
 				 setmCreditOrder((s.get(i)));
 				 break;
-			 case 4:
+			 case 3:
 				 setmInvoiceNumber(ParseData.parseInteger(s.get(i)));
 				 break;
-			 case 5:
+			 case 4:
 				 setmInvoiceDate(s.get(i));
 				 break;
 			 case 41:
@@ -307,10 +307,10 @@ public class Route {
 			 case 42:
 				 setmQuantityOrdered(ParseData.parseDouble(s.get(i)));
 				 break;
-			 case 6:
+			 case 5:
 				 setmCube(ParseData.parseDouble(s.get(i)));
 				 break;
-			 case 7:
+			 case 6:
 				 setmWeight(ParseData.parseDouble(s.get(i)));
 				 break;
 			 case 43:
@@ -322,19 +322,19 @@ public class Route {
 			 case 44:
 				 setmOrderDate(s.get(i));
 				 break;
-			 case 15:
+			 case 14:
 				 setmQuantityShipped(ParseData.parseInteger(s.get(i)));
 				 break;
-			 case 16:
+			 case 15:
 				 setmNetSales(ParseData.parseDouble(s.get(i)));
 				 break;
-			 case 17:
+			 case 16:
 				 setmActualCost(ParseData.parseDouble(s.get(i)));
 				 break;
-			 case 18:
+			 case 17:
 				 setmProfit(ParseData.parseDouble(s.get(i)));
 				 break;
-			 case 19:
+			 case 18:
 				 setmProfitPercent(ParseData.parseDouble(s.get(i)));
 				 break;
 			 }

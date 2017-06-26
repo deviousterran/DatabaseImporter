@@ -23,15 +23,24 @@ public class ExcelReading {
 	public static ArrayList<Route> readWorksheet(Sheet sheet) {
     	ArrayList<Route> rte = new ArrayList<Route>();
     	ArrayList<String> result = new ArrayList<String>();
+    	int percentComplete = 0;
+    	int lastRow = sheet.getLastRowNum();
         Row row = null;
         int numberOfElements = sheet.getRow(0).getLastCellNum();
         System.out.println("the number of elements is:" + numberOfElements);
         
-        System.out.println("the last row of the sheet is:" + sheet.getLastRowNum());
+        System.out.println("the last row of the sheet is:" + lastRow);
         //start on row 2 only if I have Headers.  In this case i do, so i start on 1(which is row 2...zero-based!)
-        for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+        for (int i = 1; i <= lastRow; i++) {
             row = sheet.getRow(i);
           //read the whole row into result
+            if( ((int)(i/lastRow)) >  percentComplete){
+            	percentComplete = (int)(i/lastRow);
+            	//System.out.println("excel parsing is " + percentComplete + "% complete");
+            	if(percentComplete % 5 == 0){
+            		System.out.println("111excel parsing is " + percentComplete + "% complete");
+            	}
+            }
             for (int j = 0; j < numberOfElements; j++) {//start column
             	//checking for null values
             	String temp = null;
@@ -64,7 +73,9 @@ public class ExcelReading {
     public static ArrayList<Route> readExcel(String fileName) {
         InputStream inp = null;
         ArrayList<Route> result = new ArrayList<Route>();
+        
         try {
+        	System.out.println("Opening Workbook...");
             inp = new FileInputStream(fileName);
             Workbook wb = WorkbookFactory.create(inp);
 

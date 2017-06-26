@@ -9,11 +9,19 @@ public class DBRoute extends DBrouteContract{
 	Route local;
 	DBHelper db;
 	PreparedStatement ps;
+	int recordsSent;
+	int totalRecordsSent;
+	int recordsWritten;
+	int totalRecordsWritten;
 
 	
 	DBRoute(){
 		db = new DBHelper();
 		local = new Route();
+		recordsSent=0;
+		totalRecordsSent=0;
+		recordsWritten=0;
+		totalRecordsWritten=0;
 		 
 	}
 	
@@ -59,7 +67,7 @@ public class DBRoute extends DBrouteContract{
 		while (rs.next()){
 			System.out.println(rs.getString(3));
 		}
-		String sql = "INSERT IGNORE INTO "+ TABLE_NAME +  " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "INSERT OR IGNORE INTO "+ TABLE_NAME +  " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		ps = db.conn.prepareStatement(sql);
 		insertPreparedStatement(r); 
 		int[] rowsAffected;
@@ -73,15 +81,20 @@ public class DBRoute extends DBrouteContract{
 	
 	
 	void batchUpload(ArrayList<Route> data) throws SQLException{
+		System.out.println("Staring Database Import");
+		recordsSent = 0;
+		recordsWritten = 0;
+		recordsSent = data.size();
+		totalRecordsSent += data.size();
 		db.connect();
 		checkForTableExistance();
 		DatabaseMetaData md = db.conn.getMetaData();
 		ResultSet rs = md.getTables(null, null, "%", null);
 		while (rs.next()){
-			System.out.println(rs.getString(3));
+			System.out.println("writing to table:"+rs.getString(3));
 		}
 		db.conn.setAutoCommit(false);
-		String sql = "INSERT INTO "+ TABLE_NAME +  " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "INSERT OR IGNORE INTO "+ TABLE_NAME +  " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		ps = db.conn.prepareStatement(sql);
 
 		for(int i = 0;i< data.size();i++){
@@ -89,12 +102,17 @@ public class DBRoute extends DBrouteContract{
 		}
 		int[] rowsAffected;
 		rowsAffected = ps.executeBatch();
+		for(int j =0;j<rowsAffected.length;j++){
+			recordsWritten = recordsWritten + rowsAffected[j];
+		}
+		totalRecordsWritten = totalRecordsWritten + recordsWritten;
+		System.out.println("number of records Sent: " + recordsSent);
+		System.out.println("number of records written: " + recordsWritten);
 
-		System.out.println("number of records written: " + rowsAffected.length);
-		
 		db.conn.commit();
 		db.conn.setAutoCommit(true);
 		db.conn.close();
+		ps.clearBatch();
 	}
 	
 	
