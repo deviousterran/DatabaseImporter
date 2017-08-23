@@ -3,17 +3,20 @@ import java.util.ArrayList;
 
 public class main {
 
-	public static void main(String[] args) throws SQLException {
+	public static void main(String[] args) throws SQLException, InstantiationException, IllegalAccessException, ClassNotFoundException {
 	
 		//there was a routes1, but i killed it...  with malice
 		ArrayList<Route> routes = new ArrayList<Route>();
 		//this calss handles the database stuff with teh route object
 		DBRoute rte = new DBRoute();
 		
+		String username = System.getProperty("user.name");
+		System.out.println(username);
+		
 		for(int i = 2; i < 16; i++){
 			routes.clear();
 			//filename and path for the excel file.  currently the path is added as a working directory
-			String excelFile = "upload week " + i + ".xlsx";
+			String excelFile = "C:\\Users\\danc\\Desktop\\Route Import FIles\\upload week " + i + ".xlsx";
 			//pulls all the route info from the Excel File
 			System.out.println("Excel Parsing has begun for " + excelFile);
 			routes.addAll(ExcelReading.readExcel(excelFile));

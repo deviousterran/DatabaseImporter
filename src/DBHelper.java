@@ -5,11 +5,12 @@ import java.sql.SQLException;
 
 public class DBHelper extends DBrouteContract{
 		Connection conn = null;
-        private final String url = "jdbc:sqlite:C:/Users/dan/workspace/RouteImporter/src/Routes.db";
+        private final String url = "jdbc:mysql://balecoud.ciu3dd4pz46k.us-west-2.rds.amazonaws.com:3306/charpro";
         
-	public void connect(){
+	public void connect() throws InstantiationException, IllegalAccessException, ClassNotFoundException{
         try {
-            conn = DriverManager.getConnection(url);
+        	Class.forName ("com.mysql.jdbc.Driver").newInstance ();
+            conn = DriverManager.getConnection(url,"bale","YDClnd03");
             System.out.println("Connection to SQLite has been established.");  
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -31,6 +32,6 @@ public class DBHelper extends DBrouteContract{
 	
 
 	
-	
+	 
 	
 }
