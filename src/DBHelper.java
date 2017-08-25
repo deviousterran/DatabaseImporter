@@ -11,7 +11,7 @@ public class DBHelper extends DBrouteContract{
         try {
         	Class.forName ("com.mysql.jdbc.Driver").newInstance ();
             conn = DriverManager.getConnection(url,"bale","YDClnd03");
-            System.out.println("Connection to SQLite has been established.");  
+            System.out.println("Connection to MYSQL has been established.");  
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }

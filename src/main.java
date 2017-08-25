@@ -22,8 +22,12 @@ public class main {
 			routes.addAll(ExcelReading.readExcel(excelFile));
 			System.out.println("Excel Parsing has finished");
 			//now we trigger the upload
+			long startime = System.currentTimeMillis();
 			rte.batchUpload(routes);
-		}	
+			long endtime = System.currentTimeMillis();
+			long duration = (endtime - startime);
+			System.out.println("time to execute: " + (duration / 1000) + " Seconds");
+			}	
 		System.out.println("Total number of records written: " + rte.totalRecordsWritten);
 		System.out.println("Total number of records sent: " + rte.totalRecordsSent);
 	}
