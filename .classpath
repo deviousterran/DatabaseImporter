@@ -3,7 +3,11 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.USER_LIBRARY/External Libraries"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/User Lib"/>
-	<classpathentry kind="lib" path="C:/Users/dan/workspace/External Libraries/mysql-connector-java-5.1.42-bin.jar"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.USER_LIBRARY/User Lib"/>
+	<classpathentry kind="lib" path="K:/Working Directory/External Libraries/poi-3.16/ooxml-lib/xmlbeans-2.6.0.jar"/>
+	<classpathentry kind="lib" path="K:/Working Directory/External Libraries/poi-3.16/poi-3.16.jar"/>
+	<classpathentry kind="lib" path="K:/Working Directory/External Libraries/poi-3.16/poi-ooxml-3.16.jar"/>
+	<classpathentry kind="lib" path="K:/Working Directory/External Libraries/poi-3.16/poi-ooxml-schemas-3.16.jar"/>
+	<classpathentry kind="lib" path="K:/Working Directory/External Libraries/mysql-connector-java-5.1.42/mysql-connector-java-5.1.42/mysql-connector-java-5.1.42-bin.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

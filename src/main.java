@@ -16,7 +16,7 @@ public class main {
 		for(int i = 2; i < 16; i++){
 			routes.clear();
 			//filename and path for the excel file.  currently the path is added as a working directory
-			String excelFile = "C:\\Users\\dan\\Desktop\\Input Sheets\\upload week " + i + ".xlsx";
+			String excelFile = "K:\\Working Directory\\Route Import FIles\\upload week " + i + ".xlsx";
 			//pulls all the route info from the Excel File
 			System.out.println("Excel Parsing has begun for " + excelFile);
 			routes.addAll(ExcelReading.readExcel(excelFile));

@@ -15,6 +15,8 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.apache.poi.xssf.streaming.SXSSFWorkbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ExcelReading {
 
@@ -85,10 +87,15 @@ public class ExcelReading {
         	System.out.println("Opening Workbook...");
             inp = new FileInputStream(fileName);
             Workbook wb = WorkbookFactory.create(inp);
+            XSSFWorkbook SXwb = new XSSFWorkbook(fileName);
+            
 
-            for(int i=0;i<wb.getNumberOfSheets();i++) {
-                result = readWorksheet(wb.getSheetAt(i)); 
+            
+            
+            for(int i=0;i<SXwb.getNumberOfSheets();i++) {
+                result = readWorksheet(SXwb.getSheetAt(i)); 
             }
+            SXwb.close();
         } catch (InvalidFormatException ex) {
             Logger.getLogger(ExcelReading.class.getName()).log(Level.SEVERE, null, ex);
         } catch (FileNotFoundException ex) {
@@ -102,6 +109,7 @@ public class ExcelReading {
                 Logger.getLogger(ExcelReading.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        
         return result;
     }
 }
